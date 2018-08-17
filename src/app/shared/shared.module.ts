@@ -41,8 +41,6 @@ import {UICarouselModule} from "ui-carousel";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {BreadcrumbResolverService} from "./service/breadcrumb/breadcrumb-resolver.service";
 import { ProductCardComponent } from './product-card/product-card.component';
-import { BasketDialogComponent } from './basket-dialog/basket-dialog.component';
-import { OrderWasSentInfoComponent } from './order-was-sent-info/order-was-sent-info.component';
 
 const routes: Routes = [
   {
@@ -109,11 +107,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   exports: [ RouterModule, CatalogComponent, InfiniteCarouselComponent, SearchAutocompleteComponent, SearchResultComponent,
-    BreadcrumbComponent, ProductCardComponent, OrderWasSentInfoComponent ],
+    BreadcrumbComponent, ProductCardComponent ],
   declarations: [CatalogComponent, InfiniteCarouselComponent, SearchAutocompleteComponent, SearchResultComponent,
-    BreadcrumbComponent, ProductCardComponent, BasketDialogComponent, OrderWasSentInfoComponent],
-  providers: [DetailService, CatalogService, BreadcrumbResolverService],
-  entryComponents: [BasketDialogComponent, OrderWasSentInfoComponent]
+    BreadcrumbComponent, ProductCardComponent],
+  providers: [DetailService, CatalogService, BreadcrumbResolverService]
 })
 export class SharedModule {
 }

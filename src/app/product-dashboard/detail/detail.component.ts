@@ -4,7 +4,6 @@ import {NgForm} from "@angular/forms";
 import {Subscription} from "rxjs/Subscription";
 import {DetailService, Product} from "../../shared/service/detail/detail.service";
 import {BasketService} from "../../shared/service/basket/basket.service";
-import {BasketDialogComponent} from "../../shared/basket-dialog/basket-dialog.component";
 import {MatDialog} from "@angular/material";
 
 @Component({
@@ -55,15 +54,6 @@ export class DetailComponent implements OnInit {
     return this.basketService.getCount(this.detail.id) > 0;
   }
 
-  openBasket(): void {
-    const dialogRef = this.dialog.open(BasketDialogComponent, {
-      width: '700px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
 
   createStarRange(){
     var items: number[] = [];

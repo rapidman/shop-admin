@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {ErrorStateMatcher, MatSnackBar} from "@angular/material";
-import {OrderWasSentInfoComponent} from "../shared/order-was-sent-info/order-was-sent-info.component";
 import {Router} from "@angular/router";
 import {BasketService, Order, UserOrder} from "../shared/service/basket/basket.service";
 
@@ -52,30 +51,6 @@ export class OrderComponent implements OnInit {
     return this.email;
   }
 
-  send() {
-    this.emailFormControl.markAsTouched({onlySelf: true});
-    this.phoneFormControl.markAsTouched({onlySelf: true});
-    this.nameFormControl.markAsTouched({onlySelf: true});
-    this.lastNameFormControl.markAsTouched({onlySelf: true});
-    let ok = true;
-    if (!this.checkEmail() || !this.checkPhone() || !this.checkName() || !this.checkLastName()) {
-      ok = false;
-    }
-    if (ok) {
-      alert(this.email + this.phone);
-      let userOrder : UserOrder = {
-        orders: this.basketService.getOrders(),
-        email: this.email,
-        phone: this.phone,
-        name: this.phone,
-        lastName: this.lastName
-      };
-      this.basketService.sendOrder(userOrder);
-      this.openSnackBar();
-      this.router.navigate(['/main']);
-    }
-  }
-
   public checkLastName() {
     return !this.lastNameFormControl.hasError('required');
   }
@@ -108,10 +83,5 @@ export class OrderComponent implements OnInit {
     this.lastName = $event.target.value;
   }
 
-  openSnackBar() {
-    this.snackBar.openFromComponent(OrderWasSentInfoComponent, {
-      duration: 2000,
-    });
-  }
 }
 
