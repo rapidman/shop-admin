@@ -1,0 +1,56 @@
+<div class="container" fxShow="true" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0%"
+     fxLayoutAlign="center">
+  <div fxFlex="100%">
+    <mat-card style="float: left">
+      <mat-card-title>
+        {{detail.name}}
+      </mat-card-title>
+
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="{{detail.name}}">
+
+      <mat-card-content>
+        <p>
+          {{detail.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card style="float: right">
+      <mat-card-header>
+        <span>Рейтинг товара:</span>
+        <ol class="starWrapper">
+          <li *ngFor="let star of createStarRange()">
+            <div>
+                <img ng-switch-when="true" src="assets/star.jpeg" class="star"/>
+            </div>
+          </li>
+          <li *ngFor="let star of createGreyStarRange()">
+            <div>
+                <img ng-switch-when="true" src="assets/star-grey.jpeg" class="star"/>
+            </div>
+          </li>
+        </ol>
+      </mat-card-header>
+      <mat-divider [inset]="true"></mat-divider>
+      <br/>
+      <mat-card-content>
+        <mat-chip-list>
+          <mat-chip selected [color]="['primary']" (click)="addToBasket()" *ngIf="!inBasket()">
+            Купить
+          </mat-chip>
+          <mat-chip selected  (click)="openBasket()" *ngIf="inBasket()" style="background-color: #16a085">
+            В корзине
+          </mat-chip>
+          <mat-chip color="accent" selected>Цена 1 490 ₽</mat-chip>
+        </mat-chip-list>
+        <mat-chip-list *ngIf="detail.present">
+          <mat-chip style="background-color: #2ecc71" color="green" selected >Есть в наличии</mat-chip>
+          <mat-chip>Самовывоз: сегодня</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,12 @@
+<mat-expansion-panel [expanded]="true" class="expansion-panel">
+  <ng-container *ngTemplateOutlet="catalogExpansionPanelContent"></ng-container>
+</mat-expansion-panel>
+
+
+<ng-template #catalogExpansionPanelContent>
+  <mat-nav-list class="catalog">
+    <mat-list-item *ngFor="let item of items" routerLinkActive="active" [routerLink]="['/category', item.id]" class="catalogItem">
+      <span  [matBadge]="item.goodsSize" matBadgeOverlap="false">{{ item.name}}</span>
+    </mat-list-item>
+  </mat-nav-list>
+</ng-template>

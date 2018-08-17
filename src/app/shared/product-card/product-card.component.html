@@ -1,0 +1,25 @@
+<mat-card class="example-card">
+  <img [routerLink]="['/category/' + product.categoryId + '/detail', product.productId]" mat-card-image
+       src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="{{product.name}}">
+  <mat-card-content class="matCardContent">
+    <p>
+      {{product.description | slice:0:250}}...
+    </p>
+  </mat-card-content>
+  <mat-chip-list aria-orientation="horizontal" class="matChipList" *ngIf="product.goodsCount > 0">
+    <span class="mat-chip">Имеется в наличии:</span>
+    <mat-chip  style="background-color: #2ecc71" color="green" selected
+              matTooltip="Имеется в наличии" matTooltipPosition="above">
+      {{product.goodsCount}}
+    </mat-chip>
+  </mat-chip-list>
+  <mat-chip-list aria-orientation="horizontal" class="matChipList">
+    <mat-chip color="accent" selected>Цена {{(product.price / 100) | number:'3.2-5'}} ₽</mat-chip>
+    <mat-chip selected [color]="['primary']" (click)="addToBasket()" *ngIf="!inBasket()">
+      Купить
+    </mat-chip>
+    <mat-chip selected  (click)="openBasket()" *ngIf="inBasket()" style="background-color: #16a085">
+      В корзине
+    </mat-chip>
+  </mat-chip-list>
+</mat-card>

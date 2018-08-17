@@ -1,0 +1,13 @@
+.catalog {
+  /*background-color: #dc8455;*/
+}
+
+.catalogItem {
+  color: dimgray;
+}
+
+.active {
+  font-weight: bold;
+}
+
+

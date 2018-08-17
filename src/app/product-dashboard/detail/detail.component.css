@@ -1,0 +1,23 @@
+.mat-card {
+  margin-left: 15px;
+  width: 600px;
+}
+
+.star {
+  width: 16px;
+}
+
+.starWrapper {
+  list-style-type: none;
+  background-color: white;
+  margin-top: 0px;
+  margin-left: 3px;
+  padding: 0;
+  display: inherit;
+}
+
+.star li {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}

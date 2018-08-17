@@ -1,0 +1,22 @@
+.breadcrumb li {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
+
+.breadcrumb li + li:before {
+  content: " > ";
+  color: dimgray;
+}
+
+.breadcrumb {
+  background-color: white;
+  padding: 5px 5px 5px 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+a {
+  color: dimgray;
+}
+

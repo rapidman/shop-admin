@@ -1,0 +1,33 @@
+.table {
+  display: table;
+  width: 99%;
+}
+
+.outerTable {
+  margin-left: 15px;
+}
+
+.innerTable{
+  margin-top: 15px;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+}
+
+.cell .groupName{
+  width: 100px;
+}
+
+.searchHeader {
+  font-size: 30px;
+}
+
+.searchHeader .queryTxt {
+  color: dimgray;
+}
+
