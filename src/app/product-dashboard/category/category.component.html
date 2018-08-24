@@ -1,11 +1,6 @@
 <div class="container" fxShow="true" fxHide.lt-md="false" fxLayout="row" fxLayout.xs="column" fxLayoutWrap
      fxLayoutGap="0%" fxLayoutAlign="center" *ngIf="route.children.length === 0">
-  <div fxFlex="10%">
-    <mat-accordion multi="false">
-      <app-catalog></app-catalog>
-    </mat-accordion>
-  </div>
-  <div fxFlex="90%">
+  <div fxFlex="100%">
     <mat-grid-list cols="4" rowHeight="445px">
       <mat-grid-tile *ngFor="let tile of tiles" [colspan]="1" [rowspan]="1">
         <app-product-card [product]="tile"></app-product-card>
@@ -18,20 +13,5 @@
     </mat-paginator>
   </div>
 </div>
-
-<div fxShow="true" fxHide.gt-sm="true" *ngIf="route.children.length === 0">
-  <mat-grid-list cols="1" rowHeight="100px">
-    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="1" [rowspan]="1" style="background-color: aquamarine">
-      {{tile.name}}
-      <a mat-button [routerLink]="['./detail', tile.id]">{{tile.name}}</a>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <mat-paginator [length]="length"
-                 [pageSize]="pageSize"
-                 [pageIndex]="pageIndex"
-                 (page)="pageEvent = getServerData($event)">
-  </mat-paginator>
-</div>
-
 
 <router-outlet></router-outlet>

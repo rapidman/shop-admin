@@ -8,21 +8,12 @@
 
     <span class="example-spacer"></span>
 
-    <div fxShow="true" fxHide.lt-md="true">
+    <div fxShow="true">
 
+      <button mat-button [routerLink]="['/category']" routerLinkActive="active">Товарные категории</button>
       <button mat-button [routerLink]="['/news']" routerLinkActive="active">Новости</button>
       <button mat-button [routerLink]="['/feedback']" routerLinkActive="active">Напишите нам</button>
       <button mat-button [routerLink]="['/about']" routerLinkActive="active">О компании</button>
-
-    </div>
-
-    <div fxShow="true" fxHide.gt-sm="true">
-
-      <mat-icon (click)="sidenav.toggle()" md-svg-icon="img/icons/menu.svg" class="ng-scope" role="img" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 18 18" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-        <path d="M0 0h18v18h-18z" fill="none"></path>
-        <path d="M2 13.5h14v-1.5h-14v1.5zm0-4h14v-1.5h-14v1.5zm0-5.5v1.5h14v-1.5h-14z"></path>
-      </svg>
-      </mat-icon>
 
     </div>
 
@@ -30,21 +21,6 @@
 
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav fxLayout="column">
-      <mat-accordion multi="false">
-        <mat-expansion-panel [expanded]="false" class="expansion-panel">
-          <mat-expansion-panel-header class="expansion-panel-header">
-            <mat-panel-title>
-              Меню
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <ng-container *ngTemplateOutlet="menuExpansionPanelContent"></ng-container>
-
-        </mat-expansion-panel>
-
-        <app-catalog></app-catalog>
-
-      </mat-accordion>
     </mat-sidenav>
 
     <mat-sidenav-content class="leftNavSide">

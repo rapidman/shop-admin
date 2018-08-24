@@ -50,7 +50,7 @@ const routes: Routes = [
   {
     path: 'category',
     data: {
-      breadcrumb: 'Категории товаров'
+      breadcrumb: 'Товарные категории'
     },
     children: [
       {

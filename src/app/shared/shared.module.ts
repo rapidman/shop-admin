@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CatalogComponent} from "./catalog/catalog.component";
 import {DetailService} from "./service/detail/detail.service";
 import {CatalogService} from "./service/catalog/catalog.service";
 import {RouterModule, Routes} from "@angular/router";
 import {SearchResultComponent} from "./search-result/search-result.component";
-import {InfiniteCarouselComponent} from "./infinite-carousel/infinite-carousel.component";
 import {SearchAutocompleteComponent} from "./search-autocomplete/search-autocomplete.component";
 import {
   MatAutocompleteModule, MatBadgeModule,
@@ -106,9 +104,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
   ],
-  exports: [ RouterModule, CatalogComponent, InfiniteCarouselComponent, SearchAutocompleteComponent, SearchResultComponent,
+  exports: [ RouterModule, SearchAutocompleteComponent, SearchResultComponent,
     BreadcrumbComponent, ProductCardComponent ],
-  declarations: [CatalogComponent, InfiniteCarouselComponent, SearchAutocompleteComponent, SearchResultComponent,
+  declarations: [SearchAutocompleteComponent, SearchResultComponent,
     BreadcrumbComponent, ProductCardComponent],
   providers: [DetailService, CatalogService, BreadcrumbResolverService]
 })

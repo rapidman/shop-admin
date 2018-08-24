@@ -22,8 +22,4 @@ export class AppComponent {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
-  getBasketProductCount(): number {
-    return this.basketService.getTotalOrderCount();
-  }
-
 }
