@@ -1,8 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {catchError} from "rxjs/operators";
 import {of} from "rxjs/observable/of";
+
+export interface CategoryPage {
+  content: Category[],
+  size: number,
+  page: number
+}
+
+export interface Category {
+  id: number;
+  goodsSize: number;
+  name: string
+}
 
 @Injectable()
 export class CatalogService {
@@ -12,8 +24,8 @@ export class CatalogService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<any> {
-    return this.http.get<any[]>(this.CATEGORIES_API)
+  getAll(): Observable<CategoryPage> {
+    return this.http.get<any>(this.CATEGORIES_API)
       .pipe(
         catchError(this.handleError('getAll', []))
       );
@@ -23,7 +35,7 @@ export class CatalogService {
     return this.http.get(this.CATEGORIES_API + '/' + id);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

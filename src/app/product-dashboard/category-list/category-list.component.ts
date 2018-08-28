@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {CatalogService, Category} from "../../shared/service/catalog/catalog.service";
+
+
 
 @Component({
   selector: 'app-category-list',
@@ -6,10 +10,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'name', 'goodsSize'];
+  dataSource: MatTableDataSource<Category>;
+  items: Array<Category>;
 
-  constructor() { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private catalogService: CatalogService) {
+    this.catalogService = this.catalogService;
+
+  }
 
   ngOnInit() {
+    this.catalogService.getAll().subscribe(data => {
+      this.items = data.content;
+      this.dataSource = new MatTableDataSource(this.items);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }
