@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {CatalogService, Category} from "../../shared/service/catalog/catalog.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -15,9 +16,12 @@ export class CategoryListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  private router: Router;
 
-  constructor(private catalogService: CatalogService) {
+  constructor(private readonly catalogService: CatalogService,
+              router: Router) {
     this.catalogService = this.catalogService;
+    this.router = router;
   }
 
   ngOnInit() {
@@ -46,5 +50,9 @@ export class CategoryListComponent implements OnInit {
     this.catalogService.delete(id).subscribe(() => {
       this.loadData();
     })
+  }
+
+  addCategory() {
+    this.router.navigate(['category/add'])
   }
 }
