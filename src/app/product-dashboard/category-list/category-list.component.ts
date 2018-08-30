@@ -3,14 +3,13 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {CatalogService, Category} from "../../shared/service/catalog/catalog.service";
 
 
-
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'goodsSize'];
+  displayedColumns: string[] = ['id', 'name', 'goodsSize', 'actions'];
   dataSource: MatTableDataSource<Category>;
   items: Array<Category>;
 
@@ -19,10 +18,13 @@ export class CategoryListComponent implements OnInit {
 
   constructor(private catalogService: CatalogService) {
     this.catalogService = this.catalogService;
-
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  public loadData() {
     this.catalogService.getAll().subscribe(data => {
       this.items = data.content;
       this.dataSource = new MatTableDataSource(this.items);
@@ -39,4 +41,10 @@ export class CategoryListComponent implements OnInit {
     }
   }
 
+  delete(id: number) {
+    alert(id);
+    this.catalogService.delete(id).subscribe(() => {
+      this.loadData();
+    })
+  }
 }

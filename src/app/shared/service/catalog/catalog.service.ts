@@ -52,4 +52,12 @@ export class CatalogService {
   private log(s: string) {
     alert(s);
   }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.CATEGORIES_API + '/' + id)
+      .pipe(
+        catchError(this.handleError('getAll', []))
+      );
+
+  }
 }
