@@ -51,8 +51,6 @@ import {AboutComponent} from './about/about.component';
 import {SharedModule} from "./shared/shared.module";
 import {ProductDashboardModule} from "./product-dashboard/product-dashboard.module";
 import { getPaginatorIntl } from './paginator-intl';
-import { OrderComponent } from './order/order.component';
-import {CategoryComponent} from "./product-dashboard/category/category.component";
 
 
 const appRoutes: Routes = [
@@ -84,7 +82,6 @@ export const routedComponents = [MainComponent, NewsComponent];
     NewsComponent,
     FeedbackComponent,
     AboutComponent,
-    OrderComponent,
     routedComponents
   ],
   imports: [

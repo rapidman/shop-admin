@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, Validators} from "@angular/forms";
+import {CatalogService} from "../../shared/service/catalog/catalog.service";
+import {Router} from "@angular/router";
+
+export interface CreateCategoryRequest {
+  name: string
+}
 
 @Component({
   selector: 'app-category-add',
@@ -6,10 +13,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-add.component.css']
 })
 export class CategoryAddComponent implements OnInit {
+  nameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  name: string;
 
-  constructor() { }
+  constructor(private router: Router,
+              private catalogService: CatalogService) {
+  }
 
   ngOnInit() {
   }
 
+  sendCategory() {
+    this.nameFormControl.markAsTouched({onlySelf: true});
+    let ok = true;
+    if (!this.checkName()) {
+      ok = false;
+    }
+    if (ok) {
+      let category: CreateCategoryRequest = {
+        name: this.name
+      };
+      this.catalogService.createCategory(category).subscribe(() => {
+          this.router.navigate(['/category']);
+        }
+      );
+    } else {
+      alert("error");
+    }
+  }
+
+  public checkName() {
+    return !this.nameFormControl.hasError('required');
+  }
+
+  onNameKey($event: any) {
+    this.name = $event.target.value;
+  }
 }

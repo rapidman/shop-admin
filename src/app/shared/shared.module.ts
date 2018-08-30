@@ -3,8 +3,6 @@ import {CommonModule} from '@angular/common';
 import {DetailService} from "./service/detail/detail.service";
 import {CatalogService} from "./service/catalog/catalog.service";
 import {RouterModule, Routes} from "@angular/router";
-import {SearchResultComponent} from "./search-result/search-result.component";
-import {SearchAutocompleteComponent} from "./search-autocomplete/search-autocomplete.component";
 import {
   MatAutocompleteModule, MatBadgeModule,
   MatButtonModule,
@@ -41,10 +39,6 @@ import {BreadcrumbResolverService} from "./service/breadcrumb/breadcrumb-resolve
 import { ProductCardComponent } from './product-card/product-card.component';
 
 const routes: Routes = [
-  {
-    path: 'search-result/:query',
-    component: SearchResultComponent, data: {state: 'search-result', breadcrumb: 'Search'}
-  },
 ];
 
 @NgModule({
@@ -104,10 +98,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
   ],
-  exports: [ RouterModule, SearchAutocompleteComponent, SearchResultComponent,
+  exports: [ RouterModule,
     BreadcrumbComponent, ProductCardComponent ],
-  declarations: [SearchAutocompleteComponent, SearchResultComponent,
-    BreadcrumbComponent, ProductCardComponent],
+  declarations: [BreadcrumbComponent, ProductCardComponent],
   providers: [DetailService, CatalogService, BreadcrumbResolverService]
 })
 export class SharedModule {

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {catchError} from "rxjs/operators";
 import {of} from "rxjs/observable/of";
+import {CreateCategoryRequest} from "../../../product-dashboard/category-add/category-add.component";
 
 export interface CategoryPage {
   content: Category[],
@@ -56,8 +57,15 @@ export class CatalogService {
   delete(id: number): Observable<any> {
     return this.http.delete(this.CATEGORIES_API + '/' + id)
       .pipe(
-        catchError(this.handleError('getAll', []))
+        catchError(this.handleError('delete', []))
       );
 
+  }
+
+  createCategory(category: CreateCategoryRequest): Observable<any> {
+    return this.http.post(this.CATEGORIES_API, category)
+      .pipe(
+        catchError(this.handleError('createCategory', []))
+      );
   }
 }

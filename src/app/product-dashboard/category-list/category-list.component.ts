@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {CatalogService, Category} from "../../shared/service/catalog/catalog.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -49,10 +49,11 @@ export class CategoryListComponent implements OnInit {
     alert(id);
     this.catalogService.delete(id).subscribe(() => {
       this.loadData();
+      // this.router.navigate(['/category']);
     })
   }
 
   addCategory() {
-    this.router.navigate(['category/add'])
+    this.router.navigate(['/category/add'])
   }
 }
