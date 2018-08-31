@@ -18,6 +18,7 @@ export class CategoryAddComponent implements OnInit {
     Validators.required
   ]);
   name: string;
+  errors: string;
 
   constructor(private router: Router,
               private catalogService: CatalogService) {
@@ -36,13 +37,15 @@ export class CategoryAddComponent implements OnInit {
       let category: CreateCategoryRequest = {
         name: this.name
       };
-      this.catalogService.createCategory(category).subscribe(() => {
-          CategoryListComponent.returned.next(false);
-          this.router.navigate(['/category']);
-        }
-      );
-    } else {
-      alert("error");
+      this.catalogService.createCategory(category)
+        .subscribe(result => {
+            CategoryListComponent.returned.next(false);
+            this.router.navigate(['/category']);
+          },
+          error => {
+            this.errors = error.error.message;
+          }
+        );
     }
   }
 

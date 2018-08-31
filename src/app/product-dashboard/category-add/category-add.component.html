@@ -3,6 +3,13 @@
     Добавление категории
   </mat-card-title>
 
+  <mat-card-subtitle>
+    <div *ngIf="errors" class="alert alert-danger">
+      {{ errors }}
+    </div>
+
+  </mat-card-subtitle>
+
   <mat-form-field class="full-width">
     <input [formControl]="nameFormControl" matInput placeholder="Имя *" (keyup)="onNameKey($event)">
     <mat-hint>Введите наименование категории</mat-hint>

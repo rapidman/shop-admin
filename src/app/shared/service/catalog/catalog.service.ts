@@ -38,7 +38,6 @@ export class CatalogService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
@@ -63,9 +62,6 @@ export class CatalogService {
   }
 
   createCategory(category: CreateCategoryRequest): Observable<any> {
-    return this.http.post(this.CATEGORIES_API, category)
-      .pipe(
-        catchError(this.handleError('createCategory', []))
-      );
+    return this.http.post(this.CATEGORIES_API, category);
   }
 }
