@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {CatalogService} from "../../shared/service/catalog/catalog.service";
 import {Router} from "@angular/router";
+import {CategoryListComponent} from "../category-list/category-list.component";
 
 export interface CreateCategoryRequest {
   name: string
@@ -36,6 +37,7 @@ export class CategoryAddComponent implements OnInit {
         name: this.name
       };
       this.catalogService.createCategory(category).subscribe(() => {
+          CategoryListComponent.returned.next(false);
           this.router.navigate(['/category']);
         }
       );

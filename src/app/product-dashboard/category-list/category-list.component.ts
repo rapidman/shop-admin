@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {CatalogService, Category} from "../../shared/service/catalog/catalog.service";
 import {Router} from "@angular/router";
+import {Subject} from "rxjs";
 
 
 @Component({
@@ -13,6 +14,7 @@ export class CategoryListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'goodsSize', 'actions'];
   dataSource: MatTableDataSource<Category>;
   items: Array<Category>;
+  public static returned: Subject<any> = new Subject();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -22,6 +24,9 @@ export class CategoryListComponent implements OnInit {
               router: Router) {
     this.catalogService = this.catalogService;
     this.router = router;
+    CategoryListComponent.returned.subscribe(res => {
+      this.loadData();
+    });
   }
 
   ngOnInit() {
@@ -46,10 +51,8 @@ export class CategoryListComponent implements OnInit {
   }
 
   delete(id: number) {
-    alert(id);
     this.catalogService.delete(id).subscribe(() => {
       this.loadData();
-      // this.router.navigate(['/category']);
     })
   }
 
