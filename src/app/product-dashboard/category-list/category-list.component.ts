@@ -59,7 +59,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   edit(id: number) {
-    this.router.navigate(['/category/edit']);
+    this.router.navigate(['/category/edit', id]);
   }
 
   addCategory() {

@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {catchError} from "rxjs/operators";
 import {of} from "rxjs/observable/of";
 import {CreateCategoryRequest} from "../../../product-dashboard/category-add/category-add.component";
+import {EditCategoryRequest} from "../../../product-dashboard/category-edit/category-edit.component";
 
 export interface CategoryPage {
   content: Category[],
@@ -32,8 +33,8 @@ export class CatalogService {
       );
   }
 
-  getById(id: string): Observable<any> {
-    return this.http.get(this.CATEGORIES_API + '/' + id);
+  getById(id: string): Observable<Category> {
+    return this.http.get<Category>(this.CATEGORIES_API + '/' + id);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -63,5 +64,9 @@ export class CatalogService {
 
   createCategory(category: CreateCategoryRequest): Observable<any> {
     return this.http.post(this.CATEGORIES_API, category);
+  }
+
+  updateCategory(category: EditCategoryRequest): Observable<any> {
+    return this.http.put(this.CATEGORIES_API, category);
   }
 }

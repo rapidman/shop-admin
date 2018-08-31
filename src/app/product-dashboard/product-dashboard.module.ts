@@ -70,7 +70,7 @@ const routes: Routes = [
             }
           },
           {
-            path: 'edit',
+            path: 'edit/:id',
             component: CategoryEditComponent,
             data: {
               breadcrumb: 'Редактирование категории'

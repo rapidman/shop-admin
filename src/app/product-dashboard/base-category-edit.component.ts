@@ -1,11 +1,13 @@
 import {FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CatalogService} from "../shared/service/catalog/catalog.service";
+import {Input} from "@angular/core";
 
 export abstract class BaseCategoryEditComponent {
   nameFormControl = new FormControl('', [
     Validators.required
   ]);
+  @Input()
   name: string;
   errors: string;
 
