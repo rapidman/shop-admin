@@ -45,6 +45,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {SharedModule} from "../shared/shared.module";
 import { CategoryAddComponent } from './category-add/category-add.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,13 @@ const routes: Routes = [
             component: CategoryAddComponent,
             data: {
               breadcrumb: 'Добавление категории'
+            }
+          },
+          {
+            path: 'edit',
+            component: CategoryEditComponent,
+            data: {
+              breadcrumb: 'Редактирование категории'
             }
           },
         ]
@@ -146,6 +154,6 @@ const routes: Routes = [
     SharedModule
   ],
   exports: [ RouterModule],
-  declarations: [CategoryListComponent, CategoryComponent, CategoryAddComponent, DetailComponent]
+  declarations: [CategoryListComponent, CategoryComponent, CategoryAddComponent, CategoryEditComponent, DetailComponent]
 })
 export class ProductDashboardModule { }

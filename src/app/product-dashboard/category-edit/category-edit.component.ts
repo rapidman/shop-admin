@@ -1,19 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {CategoryListComponent} from "../category-list/category-list.component";
+import { Component, OnInit } from '@angular/core';
 import {BaseCategoryEditComponent} from "../base-category-edit.component";
+import {CategoryListComponent} from "../category-list/category-list.component";
+import {CreateCategoryRequest} from "../category-add/category-add.component";
 import {Router} from "@angular/router";
 import {CatalogService} from "../../shared/service/catalog/catalog.service";
 
-export interface CreateCategoryRequest {
-  name: string
-}
-
 @Component({
-  selector: 'app-category-add',
-  templateUrl: './category-add.component.html',
-  styleUrls: ['./category-add.component.css']
+  selector: 'app-category-edit',
+  templateUrl: './category-edit.component.html',
+  styleUrls: ['./category-edit.component.css']
 })
-export class CategoryAddComponent extends BaseCategoryEditComponent implements OnInit {
+export class CategoryEditComponent extends BaseCategoryEditComponent  implements OnInit {
 
   constructor(protected router: Router,
               protected catalogService: CatalogService) {
@@ -45,4 +42,5 @@ export class CategoryAddComponent extends BaseCategoryEditComponent implements O
         );
     }
   }
+
 }

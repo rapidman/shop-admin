@@ -50,13 +50,19 @@ export class CategoryListComponent implements OnInit {
     }
   }
 
-  delete(id: number) {
-    this.catalogService.delete(id).subscribe(() => {
-      this.loadData();
-    })
+  delete(id: number, name: string) {
+    if (confirm("Вы действительно хотите удалить категорию '" + name + "' вместе со всеми ее товарами?")) {
+      this.catalogService.delete(id).subscribe(() => {
+        this.loadData();
+      })
+    }
+  }
+
+  edit(id: number) {
+    this.router.navigate(['/category/edit']);
   }
 
   addCategory() {
-    this.router.navigate(['/category/add'])
+    this.router.navigate(['/category/add']);
   }
 }
