@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CategoryComponent} from "./category/category.component";
 import {DetailComponent} from "./detail/detail.component";
 import {RouterModule, Routes} from "@angular/router";
 import {CategoryListComponent} from "./category-list/category-list.component";
@@ -44,8 +43,9 @@ import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {SharedModule} from "../shared/shared.module";
-import { CategoryAddComponent } from './category-add/category-add.component';
-import { CategoryEditComponent } from './category-edit/category-edit.component';
+import {CategoryAddComponent} from './category-add/category-add.component';
+import {CategoryEditComponent} from './category-edit/category-edit.component';
+import {ProductListComponent} from './product-list/product-list.component';
 
 
 const routes: Routes = [
@@ -61,7 +61,7 @@ const routes: Routes = [
         data: {
           breadcrumb: ''
         },
-        children:[
+        children: [
           {
             path: 'add',
             component: CategoryAddComponent,
@@ -78,21 +78,20 @@ const routes: Routes = [
           },
         ]
       },
+    ]
+  },
+  {
+    path: 'product',
+    data: {
+      breadcrumb: 'Товары'
+    },
+    children: [
       {
-        path: ':id',
-        component: CategoryComponent,
+        path: '',
+        component: ProductListComponent,
         data: {
-          breadcrumb: 'CatId'
-        },
-        children:[
-          {
-            path: 'detail/:id',
-            component: DetailComponent,
-            data: {
-              breadcrumb: 'ProdId'
-            }
-          },
-        ]
+          breadcrumb: ''
+        }
       },
     ]
   },
@@ -154,6 +153,7 @@ const routes: Routes = [
     SharedModule
   ],
   exports: [ RouterModule],
-  declarations: [CategoryListComponent, CategoryComponent, CategoryAddComponent, CategoryEditComponent, DetailComponent]
+  declarations: [CategoryListComponent, CategoryAddComponent, CategoryEditComponent, DetailComponent, ProductListComponent]
 })
-export class ProductDashboardModule { }
+export class ProductDashboardModule {
+}
